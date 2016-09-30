@@ -1,6 +1,6 @@
 {
     "name": "arku3/yakoo-yii2-utils",
-    "description": "Just another set of utilities classes for Yii2",
+    "description": "Just another set of utility classes for Yii2.",
     "keywords": ["yakoo", "yii2"],
     "homepage": "http://www.yakoo.com/",
     "type": "yii2-extension",

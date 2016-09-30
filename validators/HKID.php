@@ -15,13 +15,17 @@ use Yii;
 use yii\validators\Validator;
 
 /**
- *  HKID Validator
+ *  HKID verifies if the attribute value is a valid HKID Number.
  *
  * @author hmku <hmku@yakoo.com.hk>
  */
 class HKID extends Validator {
 
     private static $VALID_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    /**
+     * @var boolean whether the last digit is allowed to have bracket
+     */
     public $allowBracket = true;
 
     /**
@@ -34,6 +38,9 @@ class HKID extends Validator {
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function validateValue($value) {
         if ($value !== null && !$this->isHkid($value)) {
             return [$this->message, [
@@ -45,6 +52,9 @@ class HKID extends Validator {
     /**
      * Thanks to http://hknothingblog.blogspot.hk/2013/01/javascript-to-validate-hkid-number.html
      * Converted to PHP implementation
+     * 
+     * @param string $hkid string to be verified
+     * @return boolean if $hkid is a valid HKID number
      */
     protected function isHkid($hkid) {
         $pid = $hkid;
@@ -95,11 +105,7 @@ class HKID extends Validator {
     }
 
     /**
-     * 
-     * @param \yii\base\Model $model
-     * @param string $attribute
-     * @param \yii\web\View $view
-     * @return string
+     * @inheritdoc
      */
     public function clientValidateAttribute($model, $attribute, $view) {
         $view->registerAssetBundle(ValidatorsAsset::className());
@@ -108,8 +114,6 @@ class HKID extends Validator {
         $options['message'] = Yii::$app->getI18n()->format($this->message, [
             'attribute' => $model->getAttributeLabel($attribute),
                 ], Yii::$app->language);
-
-
         return 'Yakoo.validation.hkid(value, messages, ' . json_encode($options, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ');';
     }
 

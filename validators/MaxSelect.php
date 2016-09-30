@@ -13,7 +13,8 @@ use Yii;
 use yii\validators\Validator;
 
 /**
- *  MaxSelected
+ * MaxSelect verifies if the attribute value have less than or equals to [[max]] items.
+ * The attribute value must be an array object.
  *
  * @author hmku <hmku@yakoo.com.hk>
  */
@@ -31,6 +32,9 @@ class MaxSelect extends Validator {
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function validateValue($value) {
         if ($value !== null && is_array($value)) {
             if (count($value) > $this->max) {
@@ -43,11 +47,7 @@ class MaxSelect extends Validator {
     }
 
     /**
-     * 
-     * @param \yii\base\Model $model
-     * @param string $attribute
-     * @param \yii\web\View $view
-     * @return string
+     * @inheritdoc
      */
     public function clientValidateAttribute($model, $attribute, $view) {
         $view->registerAssetBundle(ValidatorsAsset::className());

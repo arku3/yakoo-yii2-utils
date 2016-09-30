@@ -13,17 +13,37 @@ use Yii;
 use yii\validators\Validator;
 
 /**
- * RequireOne
+ * RequireOne verifies if at least one of [[fields]] is not empty.
  * 
  * @author hmku <hmku@yakoo.com.hk>
  */
 class RequireOne extends Validator {
 
-    public $message;
+    /**
+     * @var string[]
+     * The list of attributes to check
+     */
     public $fields = [];
-    public $skipOnEmpty = false;
+    public $skipOnEmpty = false; // disable default skipOnEmpty
+
+    /**
+     * @var boolean
+     * Whether the validator will check if the attribute value is null;
+     * If this property is false, the validator will call [[isEmpty]] to check if the attribute value is empty.
+     */
     public $strict = false;
 
+    /**
+     * @var string the user-defined error message. It may contain the following placeholders which
+     * will be replaced accordingly by the validator:
+     *
+     * - `{attributes}`: the labels of the attributes being validated
+     */
+    public $message;
+
+    /**
+     * @inheritdoc
+     */
     public function init() {
         parent::init();
         if ($this->message === null) {
@@ -43,10 +63,9 @@ class RequireOne extends Validator {
         return implode(", ", $labels);
     }
 
-    public function validateAttributes($model, $attributes = null) {
-        return parent::validateAttributes($model, $attributes);
-    }
-
+    /**
+     * @inheritdoc
+     */
     public function validateAttribute($model, $attribute) {
         $valid = false;
         foreach ($this->fields as $field) {
@@ -57,6 +76,9 @@ class RequireOne extends Validator {
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function clientValidateAttribute($model, $attribute, $view) {
         $view->registerAssetBundle(ValidatorsAsset::className());
         $options = [];
