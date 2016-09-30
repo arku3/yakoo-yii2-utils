@@ -1,5 +1,7 @@
 <?php
 
+use yakoo\assets\ValidatorsAsset;
+
 /**
  * @link http://www.yakoo.com.hk 
  * @copyright (c) 2016, Yakoo Technology Limited
@@ -8,6 +10,7 @@
 
 namespace yakoo\validators;
 
+use yakoo\assets\ValidatorsAsset;
 use Yii;
 use yii\validators\Validator;
 

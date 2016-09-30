@@ -8,6 +8,7 @@
 
 namespace yakoo\validators;
 
+use yakoo\assets\ValidatorsAsset;
 use Yii;
 use yii\validators\Validator;
 
