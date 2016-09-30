@@ -1,0 +1,25 @@
+{
+    "name": "arku3/yakoo-yii2-utils",
+    "description": "Just another set of utilities classes for Yii2",
+    "keywords": ["yakoo", "yii2"],
+    "homepage": "http://www.yakoo.com/",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/arku3/yakoo-yii2-utils/issues"
+    },
+    "require": {
+        "yiisoft/yii2": "^2.0"
+    },
+    "authors": [
+        {
+            "name": "hmku",
+            "email": "hmku@yakoo.com.hk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "yakoo\\": ""
+        }
+    }
+}
