@@ -41,7 +41,7 @@
             return attributes.find(byName);
         } else {
             // use array_find polyfill
-            array_find(attributes, byName);
+            return array_find(attributes, byName);
         }
     }
     /**
